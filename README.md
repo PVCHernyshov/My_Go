@@ -14,7 +14,7 @@
 | `runes` | Парсинг чисел с плавающей точкой (`parseNumber`) |
 | `string` | Работа с подстроками (`substring`) |
 | `ugadaj` | Игра «угадай число» |
-| 'palindrom'| Проверка полиндрома |
+| `palindrom`| Проверка полиндрома |
 
 В большинстве папок есть `main_test.go` — table-driven тесты с `t.Run`, покрывающие happy path, error path и граничные случаи.
 
