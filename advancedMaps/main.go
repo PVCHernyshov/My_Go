@@ -68,7 +68,7 @@ func addAddress(addresses map[string]map[string]map[string]struct{}, city, stree
 		return err
 	}
 
-	if _, ok := addresses[city]; !ok { //в новом городе
+	if _, ok := addresses[city]; !ok {
 		addresses[city] = map[string]map[string]struct{}{}
 	}
 

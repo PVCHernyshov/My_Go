@@ -75,13 +75,18 @@ func TestRemoveAddress(t *testing.T) {
 				t.Fatalf("ожидалось %v получено %v", tt.returnError, err)
 			}
 
-			if tt.inputDataStreet == "" && tt.inputDataHouse == "" && !tt.returnError {
+			// тесты с ожидаемой ошибкой не проверяются
+			if tt.returnError {
+				return
+			}
+
+			if tt.inputDataStreet == "" && tt.inputDataHouse == "" {
 				if _, ok := tt.address[tt.inputDataCity]; ok {
 					t.Fatalf("ошибка удаления города %s", tt.inputDataCity)
 				}
 			}
 
-			if tt.inputDataStreet != "" && tt.inputDataHouse == "" && !tt.returnError {
+			if tt.inputDataStreet != "" && tt.inputDataHouse == "" {
 				if _, ok := tt.address[tt.inputDataCity][tt.inputDataStreet]; ok {
 					t.Fatalf("ошибка удаления улицы %s", tt.inputDataStreet)
 				}
@@ -91,7 +96,7 @@ func TestRemoveAddress(t *testing.T) {
 				}
 			}
 
-			if tt.inputDataHouse != "" && !tt.returnError {
+			if tt.inputDataHouse != "" {
 				if _, ok := tt.address[tt.inputDataCity][tt.inputDataStreet][tt.inputDataHouse]; ok {
 					t.Fatalf("ошибка удаления дома %s", tt.inputDataHouse)
 				}
