@@ -16,7 +16,7 @@
 | `ugadaj` | Игра «угадай число» |
 | `palindrom`| Проверка палиндрома |
 | `FriendsAges`| Работа с map. Создание, заполнение, поиск, удаление |
-| `advanced maps`| Работа с вложенными map. (`Начиналось как map[string]map[int], потом переросло.`)| 
+| `advancedMaps`| Работа с вложенными map. (`Начиналось как map[string]map[int], потом переросло.`)| 
 
 В большинстве папок есть `main_test.go` — table-driven тесты с `t.Run`, покрывающие happy path, error path и граничные случаи.
 
