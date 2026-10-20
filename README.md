@@ -14,9 +14,10 @@
 | `runes` | Парсинг чисел с плавающей точкой (`parseNumber`) |
 | `string` | Работа с подстроками (`substring`) |
 | `ugadaj` | Игра «угадай число» |
-| `palindrom`| Проверка палиндрома |
-| `FriendsAges`| Работа с map. Создание, заполнение, поиск, удаление |
-| `advancedMaps`| Работа с вложенными map. (`Начиналось как map[string]map[int], потом переросло.`)| 
+| `palindrom` | Проверка палиндрома |
+| `FriendsAges` | Работа с map. Создание, заполнение, поиск, удаление |
+| `advancedMaps` | Работа с вложенными map. (`Начиналось как map[string]map[int], потом переросло.`)|
+| `advancedStructures` | Структуры. Вложенные структуры. Срез структур. JSON |
 
 В большинстве папок есть `main_test.go` — table-driven тесты с `t.Run`, покрывающие happy path, error path и граничные случаи.
 
