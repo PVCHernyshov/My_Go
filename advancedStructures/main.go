@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"os"
 )
 
 type Person struct {
@@ -47,24 +48,36 @@ func main() {
 	}
 
 	result, err := preparationForPreservation(listOfEmployees)
-
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	listOfEmployees = []Employee{} // процедура записи результата в файл. пока я этого не умею, по этому такое действие.
-	// fmt.Printf("%v\n%s\n", result, string(result)) // просто интересно было посмотреть как это выглядит.
-	// процедура загрузки результата из файла. Пока я этого не умею
+	nameFile := "data.json"
 
-	err1 := dataExtraction(result, &listOfEmployees)
+	err = fileWriting(nameFile, result)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 
-	if err1 != nil {
-		fmt.Println(err1)
+	listOfEmployees = []Employee{} // обнуляем структуру для заполнения данными из файла
+
+	data, err := fileReading(nameFile)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	err = dataExtraction(data, &listOfEmployees)
+	if err != nil {
+		fmt.Println(err)
 		return
 	}
 
 	printListEmployees(listOfEmployees)
+
+	os.Remove(nameFile)
 }
 
 func createEmployee(name string, age int, position string, salary float64) (Employee, error) {
@@ -107,4 +120,12 @@ func printListEmployees(list []Employee) {
 	for num, emp := range list {
 		fmt.Printf("Сотрудник №%d.\n\tИмя: %s. Возраст: %d.\n\t\tДолжность: %s. З/п в час: %.2f\n", num+1, emp.Name, emp.Age, emp.Position, emp.Salary)
 	}
+}
+
+func fileWriting(name string, b []byte) error {
+	return os.WriteFile(name, b, 0644)
+}
+
+func fileReading(name string) ([]byte, error) {
+	return os.ReadFile(name)
 }
