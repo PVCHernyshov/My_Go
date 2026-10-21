@@ -38,7 +38,11 @@ func main() {
 			fmt.Println(err)
 			return
 		}
-		listOfEmployees = addEmployeeInList(listOfEmployees, employee)
+		listOfEmployees, err = addEmployeeInList(listOfEmployees, employee)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 
 	}
 
@@ -65,7 +69,7 @@ func main() {
 
 func createEmployee(name string, age int, position string, salary float64) (Employee, error) {
 	if name == "" {
-		return Employee{}, errors.New("Не указан рабоник")
+		return Employee{}, errors.New("Не указан работник")
 	}
 	e := Employee{
 		Person: Person{
@@ -78,8 +82,13 @@ func createEmployee(name string, age int, position string, salary float64) (Empl
 	return e, nil
 }
 
-func addEmployeeInList(list []Employee, emp Employee) []Employee {
-	return append(list, emp)
+func addEmployeeInList(list []Employee, emp Employee) ([]Employee, error) {
+	for _, empList := range list {
+		if (empList.Name == emp.Name) && (empList.Age == emp.Age) {
+			return list, fmt.Errorf("сотрудник %s %d лет уже есть в списке", empList.Name, empList.Age)
+		}
+	}
+	return append(list, emp), nil
 
 }
 
